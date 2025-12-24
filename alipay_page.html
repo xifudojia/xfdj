@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             min-height: 100vh;
             max-width: 375px;
@@ -21,6 +23,7 @@
             background: #f5f5f5;
             padding: 20px;
         }
+
         .container {
             width: 100%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -30,16 +33,19 @@
             overflow: hidden;
             background: white;
         }
+
         .payclass {
             padding: 20px;
             background: linear-gradient(135deg, #1677ff 0%, #2e5aff 100%);
             text-align: center;
         }
+
         .pay-title {
             color: white;
             font-size: 16px;
             margin-bottom: 15px;
         }
+
         .pay-amount {
             color: white;
             font-size: 1.2em;
@@ -47,27 +53,32 @@
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
+
         h1 {
             color: white;
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         .qr-card {
             background: white;
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
+
         #qrcode {
             margin: 20px 0;
             display: flex;
             justify-content: center;
         }
+
         .hint {
             color: #1677ff;
             font-size: 16px;
             font-weight: 500;
         }
+
         .pay-btn {
             width: 100%;
             margin-top: 15px;
@@ -79,14 +90,17 @@
             border-radius: 8px;
             cursor: pointer;
         }
+
         .pay-btn:active {
             background: #125fd1;
         }
+
         .tips-section {
             padding: 25px 20px;
             background: #fafafa;
             border-top: 1px solid #e8e8e8;
         }
+
         .tip-item {
             display: flex;
             align-items: flex-start;
@@ -94,6 +108,7 @@
             font-size: 14px;
             color: #666;
         }
+
         .tip-icon {
             width: 18px;
             height: 18px;
@@ -109,62 +124,90 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="payclass">
-        <div id="payTitle" class="pay-title">title</div>
-        <div class="pay-amount" id="payAmount">¥0.00</div>
-        <h1>推荐使用支付宝</h1>
+    <div class="container">
+        <div class="payclass">
+            <div id="payTitle" class="pay-title">title</div>
+            <div class="pay-amount" id="payAmount">¥0.00</div>
+            <h1>推荐使用支付宝</h1>
 
-        <div class="qr-card">
-            <div id="qrcode"></div>
-            <div class="hint">打开支付宝[扫一扫]</div>
+            <div class="qr-card">
+                <div id="qrcode"></div>
+                <div class="hint">打开支付宝[扫一扫]</div>
 
-            <!-- 打开支付按钮 -->
-            <button id="openPayBtn" class="pay-btn">直接打开支付</button>
+                <!-- 打开支付按钮 -->
+                <button id="openPayBtn" class="pay-btn">直接打开支付</button>
+            </div>
+        </div>
+
+        <div class="tips-section">
+
+
+            <div class="tip-item">
+                <span class="tip-icon">!</span>
+                <span>微信内无法唤起支付宝</span>
+            </div>
+
+            <div class="tip-item">
+                <span class="tip-icon">✓</span>
+                <span>打开支付宝，扫一扫</span>
+            </div>
+
         </div>
     </div>
 
-    <div class="tips-section">
 
 
-        <div class="tip-item">
-            <span class="tip-icon">✓</span>
-            <span>打开支付宝，扫一扫</span>
-        </div>
-        <div class="tip-item">
-            <span class="tip-icon">✓</span>
-            <span>支付成功后，留意短信通知</span>
-        </div>
-    </div>
-</div>
 
-<script>
-    // 获取 URL 参数
-    function getQueryParam(name) {
-        return new URLSearchParams(window.location.search).get(name);
-    }
+    <script>
+        // 获取 URL 参数
 
-    const payurl = getQueryParam("payurl") || "https://qr.alipay.com/default";
-    const paymoney = getQueryParam("paymoney") || "0.00";
-    const payTitle = getQueryParam("payTitle") || "";
 
-    document.getElementById("payAmount").textContent = "¥" + paymoney;
-    document.getElementById("payTitle").textContent = payTitle;
 
-    // 生成二维码
-    new QRCode(document.getElementById("qrcode"), {
-        text: payurl,
-        width: 200,
-        height: 200,
-        correctLevel: QRCode.CorrectLevel.H
-    });
 
-    // 点击按钮打开支付链接
-    document.getElementById("openPayBtn").onclick = function () {
-        window.location.href = payurl;
-        // 如需新窗口打开，改为：
-        // window.open(payurl, "_blank");
-    };
-</script>
+        function isWeChatBrowser() {
+            // 获取浏览器的 userAgent 并转为小写（避免大小写问题）
+            const userAgent = navigator.userAgent.toLowerCase();
+            // 检测是否包含微信标识 "micromessenger"
+            return userAgent.includes('micromessenger');
+        }
+
+        function getQueryParam(name) {
+            return new URLSearchParams(window.location.search).get(name);
+        }
+
+        const payurl = getQueryParam("payurl") || "https://qr.alipay.com/default";
+        const paymoney = getQueryParam("paymoney") || "0.00";
+        const payTitle = getQueryParam("payTitle") || "";
+
+        document.getElementById("payAmount").textContent = "¥" + paymoney;
+        document.getElementById("payTitle").textContent = payTitle;
+
+        // 生成二维码
+        new QRCode(document.getElementById("qrcode"), {
+            text: payurl,
+            width: 200,
+            height: 200,
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+
+
+
+
+        // 点击按钮打开支付链接
+        document.getElementById("openPayBtn").onclick = function () {
+
+            if (isWeChatBrowser()) {
+                document.getElementById("openPayBtn").textContent="无法在微信内打开,请使用支付宝扫一扫";
+                return;
+            }
+
+
+            window.location.href = payurl;
+            // 如需新窗口打开，改为：
+            // window.open(payurl, "_blank");
+        };
+    </script>
 </body>
+
 </html>
