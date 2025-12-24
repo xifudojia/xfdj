@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+</body>
+<script src="./ExJiShiList.js"></script>
+<script>
+
+// 导出模块
+// 示例数据格式
+const sampleData = [
+  {
+    id: 1,
+    name: "王亿亿",
+    image: "./jishi/未标题-2.png",
+    distance: "1.97km",
+    rating: "5.0",
+    orderCount: 0,
+    favoriteCount: "50+",
+    reviewCount: 1,
+    isFavorite: false
+  },
+  {
+    id: 2,
+    name: "江素素",
+    image: "./jishi/未标题-3.png",
+    distance: "1.98km",
+    rating: "5.0",
+    badge: "银牌",
+    orderCount: 11,
+    favoriteCount: 13,
+    tag: "柚一健康",
+    isFavorite: false
+  }
+];
+
+// 使用示例
+const serviceList = new ExJiShiList(document.body, {
+  data: sampleData,
+  onFavoriteClick: (id, isFavorite, item) => {
+    console.log(`收藏状态改变: ID=${id}, isFavorite=${isFavorite}`, item);
+  },
+  onOrderClick: (id, item) => {
+    console.log(`点击下单: ID=${id}`, item);
+  }
+});
+
+</script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推荐使用支付宝</title>
+    <script src="qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            max-width: 375px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+        }
+        .payclass {
+            padding: 20px;
+            background: linear-gradient(135deg, #1677ff 0%, #2e5aff 100%);
+            text-align: center;
+        }
+        .pay-title {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .pay-amount {
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .qr-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        #qrcode {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .hint {
+            color: #1677ff;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .pay-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px 0;
+            background: #1677ff;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .pay-btn:active {
+            background: #125fd1;
+        }
+        .tips-section {
+            padding: 25px 20px;
+            background: #fafafa;
+            border-top: 1px solid #e8e8e8;
+        }
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+        .tip-icon {
+            width: 18px;
+            height: 18px;
+            background: #1677ff;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="payclass">
+        <div id="payTitle" class="pay-title">title</div>
+        <div class="pay-amount" id="payAmount">¥0.00</div>
+        <h1>推荐使用支付宝</h1>
+
+        <div class="qr-card">
+            <div id="qrcode"></div>
+            <div class="hint">打开支付宝[扫一扫]</div>
+
+            <!-- 打开支付按钮 -->
+            <button id="openPayBtn" class="pay-btn">直接打开支付</button>
+        </div>
+    </div>
+
+    <div class="tips-section">
+
+
+        <div class="tip-item">
+            <span class="tip-icon">✓</span>
+            <span>打开支付宝，扫一扫</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">✓</span>
+            <span>支付成功后，留意短信通知</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 获取 URL 参数
+    function getQueryParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+    }
+
+    const payurl = getQueryParam("payurl") || "https://qr.alipay.com/default";
+    const paymoney = getQueryParam("paymoney") || "0.00";
+    const payTitle = getQueryParam("payTitle") || "";
+
+    document.getElementById("payAmount").textContent = "¥" + paymoney;
+    document.getElementById("payTitle").textContent = payTitle;
+
+    // 生成二维码
+    new QRCode(document.getElementById("qrcode"), {
+        text: payurl,
+        width: 200,
+        height: 200,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // 点击按钮打开支付链接
+    document.getElementById("openPayBtn").onclick = function () {
+        window.location.href = payurl;
+        // 如需新窗口打开，改为：
+        // window.open(payurl, "_blank");
+    };
+</script>
+</body>
+</html>

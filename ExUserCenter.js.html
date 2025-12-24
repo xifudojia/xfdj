@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+</body>
+<script src="./ExUserCenter.js"></script>
+<script src="./thisdata.js"></script>
+<script src="./ExInputModal.js"></script>
+<script src="./ExMessagePopup.js"></script>
+<script>
+
+
+    let userphone = localStorage.getItem("userphone");
+
+    const uc = new ExUserCenter(document.body, {
+        userInfo: {
+            name: userphone,
+            role: "普通会员",
+            avatar: "./res/img/user.png"
+        },
+        // 自定义菜单
+
+
+        menuItems: [
+            { id: 'chaddress', icon: svg_address, title: '服务地址', sub: '你的常用地址及联系方式' },
+            { id: 'joinjishi', icon: svg_recruit, title: '技师招募' },
+            { id: 'toushu', icon: svg_report, title: '投诉举报' },
+            { id: 'ligout', icon: svg_logout, title: '退出登录' }
+        ],
+        // 覆盖原有标题颜色
+        // 点击回调
+        onItemClick: (id, data, el) => {
+            console.log(`点击了: ${id}`, data);
+
+if(id=="toushu"){
+
+    //要求用户开启移动网络支付,但是如果wifi热点关闭后,网页认证也会关闭
+    ExMessagePopup.show({
+            type: 'success',
+            title: '投诉渠道迁移微信通知',
+            message: '为了更好的沟通请联系微信:shuheHall_complaint',
+            confirmBtnText: '确定',
+            confirmBtnCallback: () => {
+            }
+        });
+}
+
+            if (id == "chaddress") fn_chaddress();
+if(id=="joinjishi"){
+              //要求用户开启移动网络支付,但是如果wifi热点关闭后,网页认证也会关闭
+              ExMessagePopup.show({
+            type: 'success',
+            title: '',
+            message: '请联系微信:shuheHall886',
+            confirmBtnText: '确定',
+            confirmBtnCallback: () => {
+            }
+
+        });
+
+}
+
+            if (id == "ligout") {
+                localStorage.setItem("userphone", "");
+                    window.location.href=home_page;
+
+            }
+
+
+        }
+    });
+
+
+    
+
+    function fn_chaddress() {
+
+        let useraddress = localStorage.getItem(ff_useraddress);
+        if (!useraddress) useraddress = "";
+
+         let userLocation=localStorage.getItem(ff_userLocation);
+
+
+        const textModal = new ExInputModal({
+            type: "textplain",
+            title: "更新地址",
+            label: "你当前位置:"+userLocation,
+            placeholder: "填写楼号房间号即可,或住所名称",
+            inputValue: useraddress,
+            submitText: "确认",
+            successText: "设置成功！",
+            maxLength: 100,
+            autoClose: 2000,
+            // 自定义样式
+            submitBtnStyle_: `++
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  `,
+            onSubmit: (nickname) => {
+                localStorage.setItem(ff_useraddress, nickname)
+            }
+
+
+        });
+
+        textModal.show();
+
+
+    }
+
+
+
+
+
+</script>
+
+</html>

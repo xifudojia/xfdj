@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container_headtop"></div>
+    <div id="container_jjishilist"></div>
+</body>
+<script src="./ExMobileHeader.js"></script>
+<script src="./thisdata.js"></script>
+<script src="my.js"></script>
+<script src="./ExJiShiList.js"></script>
+<script src="./ExPopupWindowV2.js"></script>
+
+
+<script type="module">
+
+
+
+
+const header = new ExMobileHeader(document.getElementById("container_headtop"), {
+    location: localStorage.getItem(ff_userLocation),
+    onRefresh: (done) => {
+      // 执行刷新操作
+      console.log("刷新中...");
+      setTimeout(() => {
+        console.log("刷新完成");
+        done(); // 停止旋转动画
+
+        sendNotify("refresh","teacher");
+      }, 2000);
+    }
+  });
+
+
+
+const serviceList = new ExJiShiList(document.getElementById("container_jjishilist"), {
+  data: jishidata,
+  onFavoriteClick: (id, isFavorite, item) => {
+    console.log(`收藏状态改变: ID=${id}, isFavorite=${isFavorite}`, item);
+  },
+  onOrderClick: (id, item) => {
+
+    // console.log(`点击下单: ID=${id}`, item);
+    let pop = new ExPopupWindow("", {
+            title: item.name,
+            headerStyle__: "display: none;",
+            headerStyle: "++;",
+            url: "./ExTechnicianDetail.js.html?jsid="+item.id,
+            overlayStyle: '++background: rgba(0, 0, 0, 0.1);background-color:white;',
+            titleStyle: 'padding: 5px 5px; color: #00bfa5; font-size: 14px; text-align: center;flex: 1; text-align: center;',
+            closeBtn_innerHTML: "&minus;",
+            containerStyle: "++;box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1); bottom:0px; width:100%;height:98.5%;b@@ackground-color: red;border-radius:20px 20px 0px 0px;b@order: 1px solid rgba(0, 0, 0, 0.1);",
+            containerStyle2: "++ padding: 0px; color: #2c3e50; background: #efefef;height:100%;",
+            closeBtnStyle: `++color: ${COLOR_maincolor};font-size: 30px;`,
+            closeBtnStyle__: `display: none;`,
+        });
+pop.show();
+
+
+
+
+
+  }
+});
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="ExImageCarousel.js"></script>
+<script>
+
+
+    
+// 使用示例
+const carousel = new ExImageCarousel(document.body, {
+  images: [
+    './res/img/home_top_ad_1.png',
+    './res/img/home_top_ad_2.png'
+  ],
+  autoPlayInterval: 2000,
+  onImageClick: (index, url) => {
+    console.log(`点击了第 ${index + 1} 张图片:`, url);
+  }
+});
+
+// // 自定义样式示例
+// const customCarousel = new ExImageCarousel(document.body, {
+//   images: ['url1', 'url2', 'url3'],
+//   containerStyle: "++border-radius: 16px; overflow: hidden;",
+//   indicatorStyle: "++bottom: 20px;",
+//   imageStyle: "++border: 2px solid white;"
+// });
+</script>
+</html>

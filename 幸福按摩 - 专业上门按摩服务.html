@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>幸福按摩 - 专业上门按摩服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* 标题栏 */
+        .header {
+            background: linear-gradient(135deg, #00bfa5 0%, #00d4aa 100%);
+            color: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0, 191, 165, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        /* Logo 区域 */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .site-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .site-slogan {
+            font-size: 11px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* 导航菜单 */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: white;
+            color: #00bfa5;
+            font-weight: 600;
+        }
+
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .header-content {
+                height: 56px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .site-name {
+                font-size: 18px;
+            }
+
+            .site-slogan {
+                font-size: 10px;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #00bfa5 0%, #00d4aa 100%);
+                flex-direction: column;
+                padding: 12px 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* 示例内容区域 */
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #e8f5f3 0%, #d4f1ec 100%);
+            color: #00bfa5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .feature-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题栏 -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Logo 区域 -->
+            <div class="logo-area" onclick="goHome()">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12C21 7.03 16.97 3 12 3Z" fill="#00bfa5" opacity="0.2"/>
+                        <path d="M12 8V12L15 15" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 3.5C9 3.5 10 3 12 3C14 3 15 3.5 15 3.5M12 3V1" stroke="#00bfa5" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="9" stroke="#00bfa5" stroke-width="2"/>
+                        <path d="M8 10C8 10 9 9 10 9C11 9 11.5 9.5 11.5 9.5M12.5 9.5C12.5 9.5 13 9 14 9C15 9 16 10 16 10" stroke="#00bfa5" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <div class="site-name">幸福按摩</div>
+                    <div class="site-slogan">专业·舒适·贴心</div>
+                </div>
+            </div>
+
+            <!-- 导航菜单 -->
+            <nav class="nav-menu" id="navMenu">
+                <div class="nav-item active">首页</div>
+                <div class="nav-item">服务项目</div>
+                <div class="nav-item">技师团队</div>
+                <div class="nav-item">预约服务</div>
+                <div class="nav-item">关于我们</div>
+            </nav>
+
+            <!-- 移动端菜单按钮 -->
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 内容区域（示例） -->
+    <div class="content">
+        <div class="welcome-card">
+            <svg class="welcome-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="#e8f5f3"/>
+                <circle cx="50" cy="50" r="35" fill="#00bfa5" opacity="0.2"/>
+                <path d="M35 45C35 45 40 40 45 40C50 40 52 42 52 42M48 42C48 42 50 40 55 40C60 40 65 45 65 45" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
+                <path d="M35 60C35 60 40 70 50 70C60 70 65 60 65 60" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="42" cy="50" r="3" fill="#00bfa5"/>
+                <circle cx="58" cy="50" r="3" fill="#00bfa5"/>
+            </svg>
+            <h1 class="welcome-title">欢迎来到幸福按摩</h1>
+            <p class="welcome-text">
+                我们提供专业的上门按摩服务，让您在家中享受五星级的放松体验。<br>
+                资深技师团队，标准化服务流程，为您的健康保驾护航。
+            </p>
+            <div class="feature-badge">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6V11C4 16 7 20 12 22C17 20 20 16 20 11V6L12 2Z" fill="currentColor" opacity="0.2"/>
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2L4 6V11C4 16 7 20 12 22C17 20 20 16 20 11V6L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                100% 正规服务保障
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切换移动端菜单
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // 返回首页
+        function goHome() {
+            console.log('返回首页');
+            // 这里可以添加页面跳转逻辑
+        }
+
+        // 为导航项添加点击事件
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有active类
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                // 添加active类到当前项
+                this.classList.add('active');
+                // 移动端关闭菜单
+                document.getElementById('navMenu').classList.remove('active');
+                
+                console.log('点击了:', this.textContent);
+            });
+        });
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

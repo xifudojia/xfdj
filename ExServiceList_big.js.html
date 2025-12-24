@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./ExServiceList_big.js"></script>
+<script>
+
+    const service = new ExServiceList_big(document.body, {
+  onBook: ({ title, price }) => {
+    alert(`预约服务：${title}\n价格：${price}`);
+  }
+});
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script src="./ExMobileHeader.js"></script>
+
+<script>
+
+// 基础使用
+const header = new ExMobileHeader(document.body, {
+    location: "广东深圳",
+    onRefresh: (done) => {
+      // 执行刷新操作
+      console.log("刷新中...");
+      setTimeout(() => {
+        console.log("刷新完成");
+        done(); // 停止旋转动画
+      }, 2000);
+    }
+  });
+</script>
+</html>

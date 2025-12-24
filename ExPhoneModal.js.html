@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./ExPhoneModal.js"></script>
+<script>
+
+const modal = new ExPhoneModal({
+    title: "绑定手机号",
+    placeholder: "请输入手机号码",
+    submitText: "立即绑定",
+    autoClose: 2000,
+    onSubmit: (phone) => {
+      console.log("手机号:", phone);
+
+    },
+    onClose: () => {
+      console.log("已关闭");
+
+    }
+  });
+
+  // 显示弹窗
+  modal.show();
+  
+  throw("error:2025-11-1 00:55:58");
+  // 隐藏弹窗
+  modal.hide();
+  
+  // 销毁实例
+  modal.remove();
+
+</script>
+</html>

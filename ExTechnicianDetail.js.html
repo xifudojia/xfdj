@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container_app"></div>
+    <div style="padding: 10px;color:#00bfa5 ;">选择项目</div>
+    <div id="container_ExServiceList"></div>
+    <div style="padding: 10px;color:#00bfa5 ;">用户评价</div>
+    <div id="container_showNoPermission"></div>
+
+</body>
+
+<script src="./ExMessagePopup.js"></script>
+<script src="./showNoPermission.js"></script>
+<script src="./ExServiceList.js"></script>
+<script src="./my.js"></script>
+<script src="./thisdata.js"></script>
+<script src="./ExTechnicianDetail.js"></script>
+<script type="module">
+    import ExPopupWindow from './ExPopupWindow.js';
+
+let jsid=getUrlQueryParams("jsid");
+// jsid=1;//todo
+
+let jsinfo=getJiShiInfo(jsid);
+
+
+
+if(jsinfo==null){
+    alert("非法参数#26ds12");
+     throw new Error("error:2025-12-24 01:01:23");
+ throw new Error("error:2025-12-24 01:01:23");
+
+}
+
+const page = new ExTechnicianDetail(document.getElementById('container_app'), {
+  data: {
+    name: jsinfo.name,
+    views:jsinfo.reviewCount,
+    intro:jsinfo.introduce,
+    level: "金牌技师",
+    // 替换为真实图片地址
+    mainImage: jsinfo.image,
+    thumbImage: jsinfo.image
+  },
+  // 自定义样式示例：追加简介卡片的背景
+  onBackClick: () => {
+    console.log("FDfff");
+    history.back();
+  }
+});
+
+
+
+
+
+
+const myList = new ExServiceList(document.getElementById('container_ExServiceList'), {
+  items: cc_all_server_se,
+  onItemClick:prepare_order
+});
+
+function prepare_order (data, el){
+    //localStorage.setItem(ff_useraddress,"");//todo//
+    let useraddress = localStorage.getItem(ff_useraddress);
+    if(!useraddress){
+
+        ExMessagePopup.show({
+            type: 'warn',
+            title: '完善信息',
+            message: '请先添加你的地址',
+            confirmBtnText: '确定',
+            confirmBtnCallback: () => {
+            }
+        });
+        return;
+    }
+
+    ss("jsid==",jsid);
+    // console.log(`点击下单: ID=${id}`, item);
+    let pop = new ExPopupWindow("", {
+            title: "确认订单",
+            headerStyle__: "display: none;",
+            headerStyle: "++;",
+            url: "./orderNow.html?jishiid="+jsid+"&serverid="+data.id,
+            overlayStyle: '++background: rgba(0, 0, 0, 0.1);background-color:white;',
+            titleStyle: 'padding: 5px 5px; color: #00bfa5; font-size: 14px; text-align: center;flex: 1; text-align: center;',
+            closeBtn_innerHTML: "&minus;",
+            containerStyle: "++;box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1); bottom:0px; width:100%;height:98.5%;b@@ackground-color: red;border-radius:20px 20px 0px 0px;b@order: 1px solid rgba(0, 0, 0, 0.1);",
+            containerStyle2: "++ padding: 0px; color: #2c3e50; background: #efefef;height:100%;",
+            closeBtnStyle: `++color: ${COLOR_maincolor};font-size: 30px;`,
+            closeBtnStyle__: `display: none;`,
+        });
+pop.show();
+
+
+    // alert(`准备下单：${data.title}`);
+
+}
+
+showNoPermission("container_showNoPermission");
+
+</script>
+</html>

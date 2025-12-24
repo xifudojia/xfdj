@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+
+<script src="./ExServiceList.js"></script>
+<script>
+
+
+const services = [
+  { title: "泰式古法", duration: "60分钟", price: "219", image: "./res/serverlist/泰式古法.png" },
+  { title: "精油开背", duration: "80分钟", price: "289", image: "./res/serverlist/精油开背.png" },
+  { title: "全身精油SPA", duration: "90分钟", price: "389", image: "./res/serverlist/全身精油SPA.png" },
+  { title: "精油SPA+热灸", duration: "100分钟", price: "489", image: "./res/serverlist/精油SPA加热炙.png" }
+];
+
+const myList = new ExServiceList(document.getElementById('body'), {
+  items: services,
+  // 覆盖按钮背景色的例子
+  // 追加标题边距的例子
+  onItemClick: (data, el) => {
+    console.log("点击了项目：", data.title);
+    alert(`准备下单：${data.title}`);
+  }
+});
+
+
+
+
+// // 准备服务数据
+// const servicesData = [
+//   {
+//     id: 1,
+//     title: "泰式古法.png",
+//     description: "缓解脊椎及腰肌劳损",
+//     duration: "60分钟",
+//     price: "218.00",
+//     chosenCount: "354148",
+//     image: "./res/serverlist/泰式古法.png" // 可选,不提供则使用占位图
+//   },
+//   {
+//     id: 2,
+//     title: "精油开背",
+//     description: "帮睡助眠，激活能量",
+//     duration: "80分钟",
+//     price: "298.00",
+//     chosenCount: "105479",
+//     image: "./res/serverlist/精油开背.png" // 可选,不提供则使用占位图
+
+//   },
+
+
+//   {
+//     id: 3,
+//     title: "全身精油SPA",
+//     description: "赶走疲劳，痛并快乐",
+//     duration: "100分钟",
+//     price: "398.00",
+//     image: "./res/serverlist/全身精油SPA.png",
+
+//     chosenCount: "90930"
+//   },
+//   {
+//     id: 4,
+//     title: "精油SPA+热炙",
+//     description: "释放压力，舒筋活血",
+//     duration: "120分钟",
+//     price: "498.00",
+//     chosenCount: "42893",
+//     image: "./res/serverlist/精油SPA加热炙.png",
+
+//   }
+
+// ];
+
+// // 基础使用
+// const serviceList = new ExServiceList(document.body, {
+//   services: servicesData,
+//   onOrderClick: (service, id, element) => {
+//     console.log("下单:", service);
+//     alert(`准备下单: ${service.title}`);
+//   }
+// });
+
+</script>
+</html>

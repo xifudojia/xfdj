@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./mobileSize.css">
+</head>
+
+<style>
+
+
+#container_ExBottomNav {
+    background-color: white;
+    width: 100%;
+    padding-bottom: 0px;
+}  
+</style>
+
+<body class="body_noscroll">
+    <div class="container_noscroll">
+        <div id="container_headtop"></div>
+        <div id="container_ExImageCarousel"></div>
+
+        <div style="height: 100%; overflow-y: auto;">
+
+            <div id="container_ExJiShiList"></div>
+            <div id="container_ExServiceList_big"></div>
+        </div>
+
+
+        <div id="container_ExBottomNav"></div>
+
+    </div>
+</body>
+
+<script src="./ExBottomNav.js"></script>
+<script src="./ExImageCarousel.js"></script>
+<script src="./ExMobileHeader.js"></script>
+<script src="./ExJiShiList.js"></script>
+<script src="./ExServiceList_big.js"></script>
+<script src="./my.js"></script>
+<script src="./thisdata.js"></script>
+<script src="./ExMassageHeader2.js"></script>
+<script src="./ExPopupWindowV2.js"></script>
+<script>
+
+
+function showabout(){
+
+    // console.log(`点击下单: ID=${id}`, item);
+    let pop = new ExPopupWindow("", {
+            title: "关于",
+            headerStyle__: "display: none;",
+            headerStyle: "++;",
+            url: "./about.html",
+            overlayStyle: '++background: rgba(0, 0, 0, 0.1);background-color:white;',
+            titleStyle: 'padding: 5px 5px; color: #00bfa5; font-size: 14px; text-align: center;flex: 1; text-align: center;',
+            closeBtn_innerHTML: "&minus;",
+            containerStyle: "++;box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1); bottom:0px; width:100%;height:98.5%;b@@ackground-color: red;border-radius:20px 20px 0px 0px;b@order: 1px solid rgba(0, 0, 0, 0.1);",
+            containerStyle2: "++ padding: 0px; color: #2c3e50; background: #efefef;height:100%;",
+            closeBtnStyle: `++color: ${COLOR_maincolor};font-size: 30px;`,
+            closeBtnStyle__: `display: none;`,
+        });
+pop.show();
+
+}
+
+
+
+
+// 使用示例
+const header = new ExMassageHeader({
+  target: document.getElementById("container_headtop"),
+  onAboutClick: () => {
+    showabout();
+  },
+  onLogoClick: () => {
+    console.log('返回首页');
+  }
+});
+
+
+
+// const header2 = new ExMassageHeader({
+//   target: document.getElementById("container_headtop"),
+//   showNav: true,
+//   headerStyle_: '++box-shadow: 0 4px 12px rgba(0, 191, 165, 0.5);',
+//   navItemStyle_: '++font-size: 15px;'
+// });
+
+
+
+  
+// 使用示例
+const carousel = new ExImageCarousel(document.getElementById("container_ExImageCarousel"), {
+  images: [
+  './res/img/home_top_ad_3.png',
+  './res/img/home_top_ad_4.png',
+  './res/img/home_top_ad_1.png',
+    './res/img/home_top_ad_2.png'
+  ],
+  autoPlayInterval: 2000,
+  onImageClick: (index, url) => {
+    console.log(`点击了第 ${index + 1} 张图片:`, url);
+  }
+});
+
+
+
+
+
+
+const service = new ExServiceList_big(document.getElementById("container_ExServiceList_big"), {
+  onBook: ({ title, price }) => {
+    sendNotify("refresh","teacher");
+  }
+  ,data:cc_all_server
+});
+
+
+
+
+// 使用示例
+// const serviceList = new ExJiShiList(document.getElementById("container_ExJiShiList"), {
+//   data: sampleData,
+//   onFavoriteClick: (id, isFavorite, item) => {
+//     console.log(`收藏状态改变: ID=${id}, isFavorite=${isFavorite}`, item);
+//   },
+//   onOrderClick: (id, item) => {
+//     console.log(`点击下单: ID=${id}`, item);
+//   }
+// });
+
+
+
+
+
+
+
+// const nav = new ExBottomNav(document.getElementById("container_ExBottomNav"), {
+//   activeIndex: 0,
+//   onItemClick: (id, index, element) => {
+//     console.log(`点击了: ${id}, 索引: ${index}`);
+//   }
+// });
+
+
+
+
+</script>
+</html>

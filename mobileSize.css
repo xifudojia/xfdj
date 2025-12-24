@@ -1,0 +1,48 @@
+    .body_noscroll {
+        font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+
+        overflow: hidden;
+        /* 1. 禁止页面整体滚动 */
+        height: 100vh;
+        /* 2. 让页面高度等于视口高度，避免出现滚动条 */
+
+    }
+    .container_noscroll {
+        max-width: 420px;
+        /* 模拟手机屏幕宽度 */
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        min-height: 100vh;
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+
+
+
+    .body{
+        font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+    }
+    .container {
+        max-width: 420px;
+        /* 模拟手机屏幕宽度 */
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
