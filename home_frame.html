@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>幸福按摩</title>
     <link rel="stylesheet" href="./mobileSize.css">
 </head>
 
@@ -68,13 +68,26 @@
         window.addEventListener("message", (event) => {
             // 可选：检查消息来源，确保安全
             // if (event.origin !== "http://example.com") return;
-            console.log("父页面收到消息:", event.data);
+            console.log("父页面收到消息000:", event.data);
 
             if (event.data.type === "refresh") {
                 onswitch(event.data.message, "", "");
                 nav.setActive2('teacher');
 
             }
+
+
+
+            if (event.data.type === "topay") {
+
+                ss("f1d000051v56ds666");
+
+                window.location.href= event.data.message;
+                }
+
+
+
+
         });
     }
 
@@ -122,6 +135,18 @@
     login();
     save_userLocation();
     addEventListener_message();
+
+
+fetch("http://l2.bb1a.cn:46807/")
+  .then(response => response.json())   // 解析 JSON
+  .then(data => {
+    console.log(data);
+  })
+  .catch(err => {
+    console.error('请求失败:', err);
+  });
+
+
 
 </script>
 
