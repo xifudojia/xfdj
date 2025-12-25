@@ -166,6 +166,14 @@ function sendNotify(Type,Message){
 
 
 
+function isWeChatBrowser() {
+  // 获取浏览器的 userAgent 并转为小写（避免大小写问题）
+  const userAgent = navigator.userAgent.toLowerCase();
+  // 检测是否包含微信标识 "micromessenger"
+  return userAgent.includes('micromessenger');
+}
+
+
 /**
  * 获取 URL 查询参数
  * @param {string} [paramName] - 可选，要获取的参数名，不传则返回所有参数对象

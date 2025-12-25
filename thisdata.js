@@ -20,6 +20,7 @@ const home_page="home_frame.html"
 const ff_useraddress="useraddress";
 const ff_userphone="userphone";
 const ff_userLocation="userLocation";
+const ff_userLocation_code="userLocation_code";
 
 
 
@@ -28,7 +29,7 @@ const cc_server_1={title:"泰式古法",count: "超277658人选择",duration:"60
 const cc_server_2={title:"精油开背",count: "超440438人选择",duration:"80分钟",price:289,image:serverlist_img_2,id:2};
 const cc_server_3={title:"全身精油SPA",count: "超353538人选择",duration:"90分钟",price:389,image:serverlist_img_3,id:3};
 const cc_server_4={title:"精油SPA+热灸",count: "超194819人选择",duration:"100分钟",price:489,image:serverlist_img_4,id:4};
-const cc_server_5={title:"特殊服务",count: "超194819人选择",duration:"30分钟",price:500,image:serverlist_img_5,id:5};
+const cc_server_5={title:"其它",count: "超194819人选择",duration:"30分钟",price:500,image:serverlist_img_5,id:5};
 
 const cc_all_server=[cc_server_1,cc_server_2,cc_server_3,cc_server_4];
 const cc_all_server_se=[cc_server_1,cc_server_2,cc_server_3,cc_server_4,cc_server_5];

@@ -121,15 +121,24 @@
 
         let fromLocation="宝安区";
         let fromLocationId = getUrlQueryParams("fromLocationId");
+        if (!fromLocationId)fromLocationId=0;
+
+
+        localStorage.setItem(ff_userLocation_code, fromLocationId);
+
         if (fromLocation == 2656) {
 
         }
-
             localStorage.setItem(ff_userLocation,fromLocation);
 
     }
 
 
+
+    function redict(url){
+        window.location.href=url;
+    }
+    window.redict=redict;
 
 
     login();
@@ -137,19 +146,9 @@
     addEventListener_message();
 
 
-fetch("https://wild-paper-0d47.g1461832169.workers.dev/")
-  .then(response => response.json())   // 解析 JSON
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => {
-    console.error('请求失败:', err);
-  });
 
 
 
 </script>
 
 </html>
-
-

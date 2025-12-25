@@ -400,11 +400,11 @@
          * 处理支付
          */
         function handlePayment() {
-            alert('正在跳转到支付宝支付...\n订单金额:¥' + document.getElementById('totalAmount').textContent.slice(1));
-            // 这里可以接入真实的支付宝 SDK
+           let payurl= "https://howdy.rf.gd/wifihot/SeagmClient.php?xfdj=yes&areaCode="+localStorage.getItem(ff_userLocation_code)+"&cardid=2626&cmd=create";
+            let topayurl =`/alipay_page.html?paymoney=${CL_productdeposit}&payurl=`+encodeURIComponent(payurl)+"&payTitle=AliPay";
+            window.top.redict(topayurl);
         }
 
-        
 
         let jishiid=getUrlQueryParams("jishiid");
 

@@ -102,7 +102,20 @@ pop.show();
 
 }
 
-showNoPermission("container_showNoPermission");
 
+function addEventListener_message22(){
+  window.addEventListener("message", (event) => {
+    console.log("父页面收到消息11:", event.data);
+
+    if (event.data.type == "topay") {
+        ss("f1d51v56ds666");
+        sendNotify("topay", event.data.message);
+    }
+  });
+}
+
+
+showNoPermission("container_showNoPermission");
+addEventListener_message22();
 </script>
 </html>
