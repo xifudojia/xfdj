@@ -401,7 +401,7 @@
          */
         function handlePayment() {
            let payurl= "https://howdy.rf.gd/wifihot/SeagmClient.php?xfdj=yes&areaCode="+localStorage.getItem(ff_userLocation_code)+"&cardid=2626&cmd=create";
-            let topayurl =`/alipay_page.html?paymoney=${CL_productdeposit}&payurl=`+encodeURIComponent(payurl)+"&payTitle=AliPay";
+            let topayurl =`./alipay_page.html?paymoney=${CL_productdeposit}&payurl=`+encodeURIComponent(payurl)+"&payTitle=AliPay";
             window.top.redict(topayurl);
         }
 
