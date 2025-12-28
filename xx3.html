@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KV API Demo</title>
+</head>
+<body>
+<h1>KV API Demo</h1>
+<button id="set">Set KV</button>
+<button id="get">Get KV</button>
+
+<script>
+const API = "https://mywoker2.g1461832169.workers.dev";
+
+document.getElementById("set").onclick = async () => {
+  const resp = await fetch(`${API}/set?key=foo22&value=bar`);
+  const text = await resp.text();
+  alert(text);
+};
+
+document.getElementById("get").onclick = async () => {
+  const resp = await fetch(`${API}/get?key=foo22`);
+  const data = await resp.json();
+  alert(JSON.stringify(data));
+};
+</script>
+</body>
+</html>
