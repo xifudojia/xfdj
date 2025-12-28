@@ -122,11 +122,11 @@
         let fromLocation="宝安区";
         let fromLocationId = getUrlQueryParams("aid");
         if (!fromLocationId)fromLocationId=0;
-
+        fromLocationId=Number.parseInt(fromLocationId)
 
         localStorage.setItem(ff_userLocation_code, fromLocationId);
 
-        if (fromLocation == 1000) {
+        if (fromLocationId == 1000) {
             fromLocation="流塘区";
         }
             localStorage.setItem(ff_userLocation,fromLocation);
